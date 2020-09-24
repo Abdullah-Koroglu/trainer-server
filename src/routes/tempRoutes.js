@@ -15,7 +15,7 @@ router.get('/temps', async (req, res) => {
 });
 
 router.post('/temps', async (req, res) => {
-  const { name, datas } = req.body;
+  const { name, datas , level } = req.body;
 
   if (!name || !datas) {
     return res
@@ -24,7 +24,7 @@ router.post('/temps', async (req, res) => {
   }
 
   try {
-    const temp = new Temp({ name, datas, userId: req.user._id });
+    const temp = new Temp({ name, datas, userId: req.user._id , level });
     await temp.save();
     res.send(temp);
   } catch (err) {

@@ -19,7 +19,11 @@ const tempSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
-  datas: [pointSchema]
+  datas: [pointSchema],
+  level: {
+  	type : Number,
+  	default : 1
+  }
 });
 
 mongoose.model('Temp', tempSchema);
