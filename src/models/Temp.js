@@ -20,8 +20,8 @@ const tempSchema = new mongoose.Schema({
     default: ''
   },
   datas: [pointSchema],
-  level: {
-  	type : Number,
+  date: {
+  	type : Date,
   	default : 1
   }
 });
