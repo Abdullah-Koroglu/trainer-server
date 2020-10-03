@@ -16,6 +16,8 @@ router.get('/workouts', async (req, res) => {
 
 router.post('/workouts', async (req, res) => {
   const { name, datas } = req.body;
+  const date = Date()
+
 
   if (!name || !datas) {
     return res
@@ -24,7 +26,7 @@ router.post('/workouts', async (req, res) => {
   }
 
   try {
-    const workout = new Workout({ name, datas, userId: req.user._id });
+    const workout = new Workout({ name, datas, userId: req.user._id , date});
     await workout.save();
     res.send(workout);
   } catch (err) {
