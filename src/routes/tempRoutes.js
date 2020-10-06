@@ -8,13 +8,20 @@ const router = express.Router();
 
 router.use(requireAuth);
 
-router.get('/temps', async (req, res) => {
+router.post('/getUserTemplate', async (req, res) => {
   const temps = await Temp.find({ userId: req.user._id });
 
   res.send(temps);
 });
 
-router.post('/temps', async (req, res) => {
+router.post('/deleteTemplate/:id', async (req, res) => {
+  //delete
+  Temp.findByIdAndRemove({_id: req.params.id}).then(temps =>{
+    res.send(temps)
+  })
+});
+
+router.post('/saveUserTemplate', async (req, res) => {
   const { name, datas } = req.body;
   const date = Date()
 

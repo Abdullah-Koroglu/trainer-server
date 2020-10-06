@@ -1,20 +1,23 @@
 require('./models/User');
 require('./models/Temp');
 require('./models/Workout');
+require('./models/Profile'); 
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
 const tempRoutes = require('./routes/tempRoutes');
 const workoutRoutes = require('./routes/workoutRoutes');
+const profileRoutes = require('./routes/profileRoutes'); 
 const requireAuth = require('./middlewares/requireAuth');
 
-const app = express();
-
+const app = express(); 
+ 
 app.use(bodyParser.json());
 app.use(authRoutes);
 app.use(tempRoutes);
 app.use(workoutRoutes);
+app.use(profileRoutes);
 
 const mongoUri = "mongodb+srv://CoreOglu:Abinaber@cluster0-qwjiq.mongodb.net/test?retryWrites=true&w=majority";
 if (!mongoUri) {
