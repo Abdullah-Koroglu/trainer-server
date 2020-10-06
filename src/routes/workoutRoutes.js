@@ -8,13 +8,19 @@ const router = express.Router();
 
 router.use(requireAuth);
 
-router.get('/workouts', async (req, res) => {
+router.post('/getUserWorkouts', async (req, res) => {
   const workouts = await Workout.find({ userId: req.user._id });
 
   res.send(workouts);
 });
 
-router.post('/workouts', async (req, res) => {
+router.post('/deleteWorkout/:id', async (req, res) => {
+  Workout.findByIdAndRemove({_id: req.params.id}).then(workouts =>{
+    res.send(workouts)
+  })
+});
+
+router.post('/saveUserWorkout', async (req, res) => {
   const { name, datas } = req.body;
   const date = Date()
 
