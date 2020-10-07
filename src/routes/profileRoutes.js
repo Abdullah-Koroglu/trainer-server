@@ -17,7 +17,8 @@ router.post('/getUserProfile', async (req, res) => {
 router.post('/updateProfile', async (req, res) => {
   const { name, age } = req.body;
   const profile = await Profile.find({ userId: req.user._id });
-if ( profile !== []){
+if ( profile.length < 0.1){
+  // res.send({ust : profile});
   try {
     const profile = new Profile({ name, age, userId: req.user._id });
     await profile.save();
@@ -36,6 +37,7 @@ if ( profile !== []){
 
   await profile[0].save()
   res.send(profile[0]);
+  // res.send({alt : profile});
 }
   
 });
