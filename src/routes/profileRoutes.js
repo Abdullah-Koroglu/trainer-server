@@ -18,6 +18,7 @@ router.post('/updateProfile', async (req, res) => {
   const { name, age } = req.body;
   const profile = await Profile.find({ userId: req.user._id });
 if (!profile){
+  //fix
   try {
     const profile = new Profile({ name, age, userId: req.user._id });
     await profile.save();
